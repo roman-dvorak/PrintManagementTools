@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <table style="width:100%">
+        <tr>
+            <th>Obr</th>
+            <th>Nazev</th>
+            <th>Cas</th>
+            <th>Odkaz</th>
+            <th>Stav</th>
+        </tr>
+        {%for i in data%}
+        <tr>
+            <td><image src='/rep/{{data[i]['image']}}' width="40%"></image></td>
+            <td>{{i}}</td>
+            <td>
+
+                {{data[i]['scad_modif']}}<br>
+                {{data[i]['stl_modif']}}<br>
+                {{data[i]['image_modif']}}<br>
+                {{data[i]['gcode_modif']}}<br>
+
+            </td>
+            <td>
+
+                <a href='/rep/{{data[i]['scad']}}'>scad</a><br>
+                <a href='/rep/{{data[i]['stl']}}'>stl</a><br>
+                <a href='/rep/{{data[i]['image']}}'>img</a><br>
+                <a href='/rep/{{data[i]['gcode']}}'>gcode</a><br>
+
+            </td>
+            <td>
+
+                {%if data[i]['scad_ready'] %} OK {% else %} X {% endif %}<br>
+                {%if data[i]['stl_ready'] %} OK {% else %} X {% endif %}<br>
+                {%if data[i]['image_ready'] %} OK {% else %} X {% endif %}<br>
+                {%if data[i]['gcode_ready'] %} OK {% else %} X {% endif %}<br>
+
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+
+</div>
+
+{% endblock %}
